@@ -11,27 +11,45 @@ function ProjectsCtrl($scope) {
 
   $scope.projects = [{
     title: 'TeamDynamix Client Portal',
-    content: 'Dynamic Group Body - 1',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.',
     url: '#/projects/clientportal'
   }, {
     title: 'TeamDynamix Website',
-    content: 'Dynamic Group Body - 2',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.',
     url: '#/projects/tdwebsite'
   }, {
-    title: 'Dynamic Group Header - 3',
-    content: 'Dynamic Group Body - 3',
+    title: 'Minetta Realty',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.',
     url: '#/projects/clientportal'
   }, {
-    title: 'Dynamic Group Header - 4',
-    content: 'Dynamic Group Body - 4',
+    title: 'Blog Filtering App',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.',
     url: '#/projects/clientportal'
   }, {
     title: 'Dynamic Group Header - 5',
-    content: 'Dynamic Group Body - 5',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.',
     url: '#/projects/clientportal'
   }, {
     title: 'Dynamic Group Header - 6',
-    content: 'Dynamic Group Body - 6',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.',
     url: '#/projects/clientportal'
   }];
 

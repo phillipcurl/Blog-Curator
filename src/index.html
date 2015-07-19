@@ -36,7 +36,7 @@
       <ul class="sidebar">
         <li class="sidebar-main">
           <a ng-click="toggleSidebar()" title="Toggle Navigation">
-            Curator
+            Phillip Curl
             <i class="pull-right menu-icon glyphicon" ng-class="{'glyphicon-chevron-left': toggle, 'glyphicon-chevron-right': !toggle}"></i>
           </a>
         </li>
@@ -44,7 +44,7 @@
           <span>NAVIGATION</span>
         </li>
         <li ng-repeat="menuItem in menuItems" class="sidebar-list">
-          <a ng-click="menuClick(menuItem)" href="{{menuItem.url}}">
+          <a ng-click="menuClick($index)" href="{{menuItem.url}}">
             {{menuItem.title}} <span class="menu-icon fa {{menuItem.icon}}"></span>
             <span class="sr-only">{{menuItem}}</span>
           </a>
@@ -53,18 +53,18 @@
 
       <div class="sidebar-footer">
         <div class="col-xs-4">
-          <a href="https://github.com/rdash/rdash-angular" target="_blank">
-            Github
+          <a href="https://github.com/phillipcurl" target="_blank">
+            GitHub
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="https://github.com/rdash/rdash-angular/README.md" target="_blank">
-            About
+          <a href="#" target="_blank">
+            Email
           </a>
         </div>
         <div class="col-xs-4">
           <a href="#">
-            Support
+            Item 3
           </a>
         </div>
       </div>
@@ -73,97 +73,38 @@
 
     <div id="content-wrapper">
       <div class="page-content">
-
-        <!-- Header Bar -->
-        <div class="row header visible-xs">
-          <div class="col-xs-12">
-            <div class="pull-right">
-
-              <!-- <div class="item dropdown">
-                <a href="#" class="dropdown-toggle">
-                  <img src="img/avatar.jpg">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Joe Bloggs
-                  </li>
-                  <li class="divider"></li>
-                  <li class="link">
-                    <a href="#">
-                      Profile
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li class="link">
-                    <a href="#">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div> -->
-              <!-- <div class="item dropdown">
-               <a href="#" class="dropdown-toggle">
-                  <i class="fa fa-bell-o"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Notifications
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="#">Server Down!</a>
-                  </li>
-                </ul>
-              </div> -->
-
-              <div class="item visible-xs" style="margin: 15px;">
+        <nav class="navbar navbar-fixed-top visible-xs">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">
+                <img alt="Brand" src="...">
+              </a>
+              <div class="meta">
+                <div class="page">
+                  Phillip Curl
+                </div>
+                <div class="breadcrumb-links">
+                  {{pageTitle}}
+                </div>
+              </div>
+              <div class="pull-right item gutter visible-xs">
                 <a ng-click="toggleSidebar()" class="btn btn-default">
                   Menu
                 </a>
               </div>
-
             </div>
-
-            <div class="meta">
-              <div class="page">
-                Dashboard
-              </div>
-              <div class="breadcrumb-links">
-                Home / Dashboard
-              </div>
-            </div>
-
           </div>
-        </div>
-        <!-- End Header Bar -->
+          <!-- /.container-fluid -->
+        </nav>
 
-        <div class="gutter-top alerts-container"
-             ng-class="{'fade': !showAlerts, 'no-fade': showAlerts}"
-             data-ng-controller="AlertsCtrl" data-ng-show="alerts.length"
-             style="position:absolute; z-index:900;">
-
-          <div data-ng-repeat="alert in alerts" class="col-xs-12"
-               ng-class="{'hidden': alert.wasClosed, 'visible': !alert.wasClosed}">
-
+        <div class="gutter-top alerts-container" ng-class="{'fade': !showAlerts, 'no-fade': showAlerts}" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length" style="position:absolute; z-index:900;">
+          <div data-ng-repeat="alert in alerts" class="col-xs-12" ng-class="{'hidden': alert.wasClosed, 'visible': !alert.wasClosed}">
             <alert type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-
           </div>
-
         </div>
-
         <!-- Main Content -->
-        <div ui-view></div>
-
+        <div id="main-content" ui-view></div>
       </div>
       <!-- End Page Content -->
     </div>
@@ -171,5 +112,4 @@
   </div>
   <!-- End Page Wrapper -->
 </body>
-
 </html>

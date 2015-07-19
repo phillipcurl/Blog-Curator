@@ -6,6 +6,10 @@ angular
   .module('myApp')
   .controller('AlertsCtrl', ['$scope', AlertsCtrl]);
 
+/**
+ * [AlertsCtrl description]
+ * @param {[type]} $scope [description]
+ */
 function AlertsCtrl($scope) {
   $scope.alerts = [{
       type: 'info',
@@ -18,12 +22,21 @@ function AlertsCtrl($scope) {
     // }
   ];
 
+  /**
+   * Add an alert to the alerts Array
+   * TODO: THIS IS CURRENTLY UNUSED
+   */
   $scope.addAlert = function() {
     $scope.alerts.push({
       msg: 'Another alert!'
     });
   };
 
+  /**
+   * [function description]
+   * @param  {[type]} index [description]
+   * @return {[type]}       [description]
+   */
   $scope.closeAlert = function(index) {
     var currAlert = $scope.alerts[index];
     currAlert.wasClosed = false;

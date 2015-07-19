@@ -7,12 +7,16 @@ angular.module('myApp').config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
 
     // For unmatched routes
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/projects/tdwebsite');
 
     // Application routes
     $stateProvider
       .state('index', {
         url: '/',
+        templateUrl: 'templates/home.html'
+      })
+      .state('home', {
+        url: '/home',
         templateUrl: 'templates/home.html'
       })
       .state('about', {

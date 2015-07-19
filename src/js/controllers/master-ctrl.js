@@ -5,22 +5,47 @@
 angular.module('myApp')
   .controller('MasterCtrl', ['$scope', '$timeout', '$cookieStore', MasterCtrl]);
 
+/**
+ * Sidebar Toggle, Menu Generation, and Cookie Control
+ * @param {[type]} $scope       [description]
+ * @param {[type]} $timeout     [description]
+ * @param {[type]} $cookieStore [description]
+ */
 function MasterCtrl($scope, $timeout, $cookieStore) {
   /**
-   * Sidebar Toggle & Cookie Control
+   * This sets the width that the sidebar is automatically toggled unless the
+   * user has manually toggled it themselves
    */
   var mobileView = 992;
 
+  /**
+   * [if description]
+   * @param  {Boolean} angular.isDefined($cookieStore.get('showAlerts' [description]
+   * @return {[type]}                                                  [description]
+   */
   if (angular.isDefined($cookieStore.get('showAlerts'))) {
     $scope.showAlerts = !$cookieStore.get('showAlerts') ? false : true;
   } else {
     $scope.showAlerts = true;
   }
 
+  /**
+   * [pageTitle description]
+   * @type {String}
+   */
   $scope.pageTitle = 'Home';
 
+  /**
+   * [currSidebarClass description]
+   * @type {String}
+   */
   $scope.currSidebarClass = 'class';
 
+  /**
+   * The collection of menuItems used in the sidenav
+   * @param title {string}
+   * @type {Array of menuItems}
+   */
   $scope.menuItems = [{
     title: 'Home',
     icon: 'fa-home',
@@ -47,6 +72,11 @@ function MasterCtrl($scope, $timeout, $cookieStore) {
     sidebarClass: ''
   }];
 
+  /**
+   * [$timeout description]
+   * @param  {[type]} function( [description]
+   * @return {num}           the timeout value for the alert fade. 5s
+   */
   $timeout(function() {
     $scope.showAlerts = false;
     $cookieStore.put('showAlerts', $scope.showAlerts);
@@ -69,18 +99,36 @@ function MasterCtrl($scope, $timeout, $cookieStore) {
 
   });
 
+  /**
+   * Toggle the sidebar and save the toggle value in a cookie
+   */
   $scope.toggleSidebar = function() {
     $scope.toggle = !$scope.toggle;
     $cookieStore.put('toggle', $scope.toggle);
   };
 
-  $scope.menuClick = function(menuItem) {
-    //var currItem = $scope.menuItems[index];
-    $scope.currSidebarClass = menuItem.sidebarClass;
-    menuItem.isActive = true;
-    $scope.pageTitle = menuItem.title;
+  /**
+   * Called when a menu item in the sidebar is clicked.
+   * Set the sidebarClass to the sidebarClass value of the menuItem being clicked
+   * Set the isActive value to true for the current menuItem
+   * Change the global title value to the value of the current menuItem's title
+   * @param  {$index} the index of the menuItem that was clicked
+   */
+  $scope.menuClick = function(index) {
+    var currItem = $scope.menuItems[index];
+    $scope.currSidebarClass = currItem.sidebarClass;
+    currItem.isActive = true;
+    $scope.pageTitle = currItem.title;
   };
 
+  /**
+   * Re-bind the scope when the window is resized
+   *
+   * TODO: add a fallback call param to the $apply call. This is probably unnecessary
+   * since an onresize call isn't likely to trigger an exception, but rebinding might,
+   * so it can't hurt. This fallback function is wrapped in a finally block so it will
+   * be called regardless. Be careful that the function I write respects that fact
+   */
   window.onresize = function() {
     $scope.$apply();
   };
