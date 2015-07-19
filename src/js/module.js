@@ -1,0 +1,1 @@
+angular.module('Curator', ['ui.bootstrap', 'ui.router', 'ngCookies']);

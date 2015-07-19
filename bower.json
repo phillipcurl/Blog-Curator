@@ -1,0 +1,32 @@
+{
+  "name": "phillipcurl.com",
+  "version": "0.0.1",
+  "description": "Phillip Curl's Personal Site",
+  "homepage": "http://phillipcurl.com",
+  "authors": [
+    "Phillip Curl <phillipcurl@gmail.com>"
+  ],
+  "contributors": [
+    "Phillip Curl <phillipcurl@gmail.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.x",
+    "angular-cookies": "~1.x",
+    "angular-bootstrap": "~0.x",
+    "angular-ui-router": "^0.2.x",
+    "bootstrap": "~3.x",
+    "font-awesome": "~4.x"
+  },
+  "resolutions": {
+    "angular": ">= 1.0.8"
+  }
+}
