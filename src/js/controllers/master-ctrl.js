@@ -53,19 +53,19 @@ function MasterCtrl($scope, $timeout, $cookieStore) {
     isActive: false,
     sidebarClass: ''
   }, {
-    title: 'About',
+    title: 'Top 25',
     icon: 'fa-user',
     url: '#about',
     isActive: false,
     sidebarClass: 'red'
   }, {
-    title: 'Projects',
+    title: 'Genres',
     icon: 'fa-cube',
     url: '#projects',
     isActive: false,
     sidebarClass: ''
   }, {
-    title: 'Writing',
+    title: 'View All',
     icon: 'fa-pencil',
     url: '#writing',
     isActive: false,
