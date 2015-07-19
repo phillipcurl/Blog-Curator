@@ -45,4 +45,4 @@ Icon
 /node_modules
 
 # Bower components
-public
+/src/components

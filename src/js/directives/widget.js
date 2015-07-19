@@ -3,18 +3,18 @@
  */
 
 angular
-    .module('Curator')
-    .directive('rdWidget', rdWidget);
+  .module('myApp')
+  .directive('rdWidget', rdWidget);
 
 function rdWidget() {
-    var directive = {
-        transclude: true,
-        template: '<div class="widget" ng-transclude></div>',
-        restrict: 'EA'
-    };
-    return directive;
+  var directive = {
+    transclude: true,
+    template: '<div class="widget" ng-transclude></div>',
+    restrict: 'EA'
+  };
+  return directive;
 
-    function link(scope, element, attrs) {
-        /* */
-    }
+  function link(scope, element, attrs) {
+    /* */
+  }
 };

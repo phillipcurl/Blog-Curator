@@ -1,62 +1,70 @@
 <!doctype html>
-<html lang="en" ng-app="Curator">
+<html lang="en" ng-app="myApp">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Blog Curator</title>
+  <title>Phillip Curl</title>
   <!-- STYLES -->
   <!-- build:css lib/css/main.min.css -->
-  <link rel="stylesheet" type="text/css" href="../public/lib/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../public/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css"> -->
   <!-- endbuild -->
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,400' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/styles.min.css">
   <!-- SCRIPTS -->
   <!-- build:js lib/js/main.min.js -->
-  <script type="text/javascript" src="../public/lib/angular/angular.min.js"></script>
-  <script type="text/javascript" src="../public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-  <script type="text/javascript" src="../public/lib/angular-cookies/angular-cookies.min.js"></script>
-  <script type="text/javascript" src="../public/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="components/angular-animate/angular-animate.min.js"></script>
+  <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
+  <script type="text/javascript" src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <!-- endbuild -->
   <!-- Custom Scripts -->
   <script type="text/javascript" src="js/dashboard.min.js"></script>
 </head>
+
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
 
     <!-- Sidebar -->
-    <div id="sidebar-wrapper">
+    <div id="sidebar-wrapper" class="class {{currSidebarClass}}">
+
       <ul class="sidebar">
         <li class="sidebar-main">
-          <a ng-click="toggleSidebar()">
+          <a ng-click="toggleSidebar()" title="Toggle Navigation">
             Curator
-            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+            <i class="pull-right menu-icon glyphicon" ng-class="{'glyphicon-chevron-left': toggle, 'glyphicon-chevron-right': !toggle}"></i>
           </a>
         </li>
-        <li class="sidebar-title"><span>NAVIGATION</span></li>
-        <li class="sidebar-list">
-          <a href="#/home">Home <span class="menu-icon fa fa-tachometer"></span></a>
+        <li class="sidebar-title">
+          <span>NAVIGATION</span>
         </li>
-        <li class="sidebar-list">
-          <a href="#/page">Tab 1 <span class="menu-icon fa fa-table"></span></a>
+        <li ng-repeat="menuItem in menuItems" class="sidebar-list">
+          <a ng-click="menuClick(menuItem)" href="{{menuItem.url}}">
+            {{menuItem.title}} <span class="menu-icon fa {{menuItem.icon}}"></span>
+            <span class="sr-only">{{menuItem}}</span>
+          </a>
         </li>
       </ul>
+
       <div class="sidebar-footer">
         <div class="col-xs-4">
-          <a href="#" target="_blank">
-            Link 1
+          <a href="https://github.com/rdash/rdash-angular" target="_blank">
+            Github
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="#" target="_blank">
-            Link 2
+          <a href="https://github.com/rdash/rdash-angular/README.md" target="_blank">
+            About
           </a>
         </div>
         <div class="col-xs-4">
           <a href="#">
-            Link 3
+            Support
           </a>
         </div>
       </div>
@@ -67,10 +75,11 @@
       <div class="page-content">
 
         <!-- Header Bar -->
-        <div class="row header">
+        <div class="row header visible-xs">
           <div class="col-xs-12">
-            <div class="user pull-right">
-              <div class="item dropdown">
+            <div class="pull-right">
+
+              <!-- <div class="item dropdown">
                 <a href="#" class="dropdown-toggle">
                   <img src="img/avatar.jpg">
                 </a>
@@ -101,8 +110,8 @@
                     </a>
                   </li>
                 </ul>
-              </div>
-              <div class="item dropdown">
+              </div> -->
+              <!-- <div class="item dropdown">
                <a href="#" class="dropdown-toggle">
                   <i class="fa fa-bell-o"></i>
                 </a>
@@ -115,8 +124,16 @@
                     <a href="#">Server Down!</a>
                   </li>
                 </ul>
+              </div> -->
+
+              <div class="item visible-xs" style="margin: 15px;">
+                <a ng-click="toggleSidebar()" class="btn btn-default">
+                  Menu
+                </a>
               </div>
+
             </div>
+
             <div class="meta">
               <div class="page">
                 Dashboard
@@ -125,15 +142,34 @@
                 Home / Dashboard
               </div>
             </div>
+
           </div>
         </div>
         <!-- End Header Bar -->
 
+        <div class="gutter-top alerts-container"
+             ng-class="{'fade': !showAlerts, 'no-fade': showAlerts}"
+             data-ng-controller="AlertsCtrl" data-ng-show="alerts.length"
+             style="position:absolute; z-index:900;">
+
+          <div data-ng-repeat="alert in alerts" class="col-xs-12"
+               ng-class="{'hidden': alert.wasClosed, 'visible': !alert.wasClosed}">
+
+            <alert type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+          </div>
+
+        </div>
+
         <!-- Main Content -->
         <div ui-view></div>
 
-      </div><!-- End Page Content -->
-    </div><!-- End Content Wrapper -->
-  </div><!-- End Page Wrapper -->
+      </div>
+      <!-- End Page Content -->
+    </div>
+    <!-- End Content Wrapper -->
+  </div>
+  <!-- End Page Wrapper -->
 </body>
+
 </html>

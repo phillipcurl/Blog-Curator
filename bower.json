@@ -1,7 +1,7 @@
 {
-  "name": "phillipcurl.com",
+  "name": "Curator",
   "version": "0.0.1",
-  "description": "Phillip Curl's Personal Site",
+  "description": "Music Blog Curator",
   "homepage": "http://phillipcurl.com",
   "authors": [
     "Phillip Curl <phillipcurl@gmail.com>"
@@ -14,12 +14,13 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "public",
+    "bower_components",
     "test",
     "tests"
   ],
   "dependencies": {
     "angular": "~1.4.x",
+    "angular-animate": "~1.x",
     "angular-cookies": "~1.x",
     "angular-bootstrap": "~0.x",
     "angular-ui-router": "^0.2.x",

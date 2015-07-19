@@ -1,0 +1,64 @@
+<header class="image-bg steps-ptn">
+  <div class="col-sm-12">
+    <h1>
+      <strong>Projects</strong>
+    </h1>
+    <p class="lead">This is the about me sub-header</p>
+  </div>
+<!-- <img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt=""> -->
+</header>
+
+<div class="row">
+  <div class="col-md-6" ng-repeat="project in projects">
+    <rd-widget>
+      <rd-widget-header icon="fa-users" title='{{project.title}}'>
+        <a class="btn btn-default" href="{{project.url}}">
+          <i class="fa fa-arrow-right"></i>
+        </a>
+      </rd-widget-header>
+      <rd-widget-body classes="medium">
+        <p>{{project.content}}</p>
+      </rd-widget-body>
+      <rd-widget></div>
+    </div>
+
+<!-- <div class="row">
+  <div class="col-sm-12">
+    <p>
+        <button class="btn btn-default btn-sm" ng-click="status.open = !status.open">Toggle last panel</button>
+        <button class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
+      </p>
+
+      <label class="checkbox">
+        <input type="checkbox" ng-model="oneAtATime">
+        Open only one at a time
+      </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <accordion close-others="oneAtATime">
+      <accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+        This content is straight in the template.
+      </accordion-group>
+      <accordion-group ng-repeat="project in projects">
+        <accordion-heading>
+            {{project.title}}
+        </accordion-heading>
+        {{project.content}}
+      </accordion-group>
+      <accordion-group heading="Dynamic Body Content">
+        <p>The body of the accordion group grows to fit the contents</p>
+          <button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+          <div ng-repeat="item in items">{{item}}</div>
+      </accordion-group>
+      <accordion-group is-open="status.open">
+          <accordion-heading>
+              I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+          </accordion-heading>
+          This is just some content to illustrate fancy headings.
+      </accordion-group>
+    </accordion>
+  </div>
+</div> -->
