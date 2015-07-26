@@ -23,8 +23,8 @@ angular.module('myApp').config(['$stateProvider', '$urlRouterProvider',
         url: '/about',
         templateUrl: 'templates/about.html'
       })
-      .state('projects', {
-        url: '/projects',
+      .state('genres', {
+        url: '/genres',
         templateUrl: 'templates/genres.html',
         controller: 'GenresCtrl'
       })

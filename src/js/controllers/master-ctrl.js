@@ -61,7 +61,7 @@ function MasterCtrl($scope, $timeout, $cookieStore) {
   }, {
     title: 'Genres',
     icon: 'fa-cube',
-    url: '#projects',
+    url: '#genres',
     isActive: false,
     sidebarClass: ''
   }, {
