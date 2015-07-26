@@ -25,8 +25,8 @@ angular.module('myApp').config(['$stateProvider', '$urlRouterProvider',
       })
       .state('projects', {
         url: '/projects',
-        templateUrl: 'templates/projects.html',
-        controller: 'ProjectsCtrl'
+        templateUrl: 'templates/genres.html',
+        controller: 'GenresCtrl'
       })
       .state('clientportal', {
         url: '/projects/clientportal',
