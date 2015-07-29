@@ -2,6 +2,7 @@ var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
+var request 	 = require('request');
 
 // super secret for creating tokens
 // var superSecret = config.secret;
@@ -9,6 +10,8 @@ var config     = require('../../config');
 module.exports = function(app, express) {
 
 	var apiRouter = express.Router();
+	var kimonoKey = config.kimonoKey;
+	var apiKeyStr = '?apikey=' + kimonoKey;
 
 	// route to generate sample user
 	// apiRouter.post('/sample', function(req, res) {
@@ -131,95 +134,150 @@ module.exports = function(app, express) {
 		res.json({ message: 'hooray! welcome to our api!' });
 	});
 
-	// on routes that end in /users
-	// ----------------------------------------------------
-	apiRouter.route('/users')
-
-		// create a user (accessed at POST http://localhost:8080/users)
-		.post(function(req, res) {
-
-			var user = new User();		// create a new instance of the User model
-			user.name = req.body.name;  // set the users name (comes from the request)
-			user.username = req.body.username;  // set the users username (comes from the request)
-			user.password = req.body.password;  // set the users password (comes from the request)
-
-			user.save(function(err) {
-				if (err) {
-					// duplicate entry
-					if (err.code == 11000)
-						return res.json({ success: false, message: 'A user with that username already exists. '});
-					else
-						return res.send(err);
-				}
-
-				// return a message
-				res.json({ message: 'User created!' });
-			});
-
-		})
+	/**
+	 * GET route for Pigeons & Planes
+	 */
+	apiRouter.route('/getfeed/:kimono_id')
 
 		// get all the users (accessed at GET http://localhost:8080/api/users)
 		.get(function(req, res) {
 
-			User.find({}, function(err, users) {
-				if (err) res.send(err);
+			var kimonoId = req.params.kimono_id;
 
-				// return the users
-				res.json(users);
+			/**
+			 * use Request to get json from Kimono
+			 */
+ 			request('https://www.kimonolabs.com/api/' + kimonoId + apiKeyStr,
+			function(err, response, body) {
+
+				if (!err && response.statusCode == 200) {
+
+					var bodyJSON = JSON.parse(body);
+						var collection = bodyJSON.results.collection1;
+
+					res.json(collection);
+		    }
+
 			});
 		});
 
-	// on routes that end in /users/:user_id
-	// ----------------------------------------------------
-	apiRouter.route('/users/:user_id')
+	/**
+	 * GET route for Pigeons & Planes
+	 */
+	apiRouter.route('/getondemand/:kimono_id/:od_val')
 
-		// get the user with that id
+		// get all the users (accessed at GET http://localhost:8080/api/users)
 		.get(function(req, res) {
-			User.findById(req.params.user_id, function(err, user) {
-				if (err) res.send(err);
 
-				// return that user
-				res.json(user);
-			});
-		})
+			var kimonoId 		= req.params.kimono_id,
+					onDemandVal = req.params.od_val;
 
-		// update the user with this id
-		.put(function(req, res) {
-			User.findById(req.params.user_id, function(err, user) {
+			/**
+			 * use Request to get json from Kimono
+			 */
+ 			request('https://www.kimonolabs.com/api/json/ondemand/' + kimonoId + apiKeyStr + '&kimpath1=' + onDemandVal,
+			function(err, response, body) {
 
-				if (err) res.send(err);
+				if (!err && response.statusCode == 200) {
 
-				// set the new user information if it exists in the request
-				if (req.body.name) user.name = req.body.name;
-				if (req.body.username) user.username = req.body.username;
-				if (req.body.password) user.password = req.body.password;
+					var bodyJSON = JSON.parse(body);
+					var collection = bodyJSON.results.collection1;
 
-				// save the user
-				user.save(function(err) {
-					if (err) res.send(err);
+					res.json(collection);
+		    }
 
-					// return a message
-					res.json({ message: 'User updated!' });
-				});
-
-			});
-		})
-
-		// delete the user with this id
-		.delete(function(req, res) {
-			User.remove({
-				_id: req.params.user_id
-			}, function(err, user) {
-				if (err) res.send(err);
-
-				res.json({ message: 'Successfully deleted' });
 			});
 		});
 
-	// api endpoint to get user information
-	apiRouter.get('/me', function(req, res) {
-		res.send(req.decoded);
-	});
+	// on routes that end in /users
+	// ----------------------------------------------------
+	// apiRouter.route('/users')
+	//
+	// 	// create a user (accessed at POST http://localhost:8080/users)
+	// 	.post(function(req, res) {
+	//
+	// 		var user = new User();		// create a new instance of the User model
+	// 		user.name = req.body.name;  // set the users name (comes from the request)
+	// 		user.username = req.body.username;  // set the users username (comes from the request)
+	// 		user.password = req.body.password;  // set the users password (comes from the request)
+	//
+	// 		user.save(function(err) {
+	// 			if (err) {
+	// 				// duplicate entry
+	// 				if (err.code == 11000)
+	// 					return res.json({ success: false, message: 'A user with that username already exists. '});
+	// 				else
+	// 					return res.send(err);
+	// 			}
+	//
+	// 			// return a message
+	// 			res.json({ message: 'User created!' });
+	// 		});
+	//
+	// 	})
+	//
+	// 	// get all the users (accessed at GET http://localhost:8080/api/users)
+	// 	.get(function(req, res) {
+	//
+	// 		User.find({}, function(err, users) {
+	// 			if (err) res.send(err);
+	//
+	// 			// return the users
+	// 			res.json(users);
+	// 		});
+	// 	});
+	//
+	// // on routes that end in /users/:user_id
+	// // ----------------------------------------------------
+	// apiRouter.route('/users/:user_id')
+	//
+	// 	// get the user with that id
+	// 	.get(function(req, res) {
+	// 		User.findById(req.params.user_id, function(err, user) {
+	// 			if (err) res.send(err);
+	//
+	// 			// return that user
+	// 			res.json(user);
+	// 		});
+	// 	})
+	//
+	// 	// update the user with this id
+	// 	.put(function(req, res) {
+	// 		User.findById(req.params.user_id, function(err, user) {
+	//
+	// 			if (err) res.send(err);
+	//
+	// 			// set the new user information if it exists in the request
+	// 			if (req.body.name) user.name = req.body.name;
+	// 			if (req.body.username) user.username = req.body.username;
+	// 			if (req.body.password) user.password = req.body.password;
+	//
+	// 			// save the user
+	// 			user.save(function(err) {
+	// 				if (err) res.send(err);
+	//
+	// 				// return a message
+	// 				res.json({ message: 'User updated!' });
+	// 			});
+	//
+	// 		});
+	// 	})
+	//
+	// 	// delete the user with this id
+	// 	.delete(function(req, res) {
+	// 		User.remove({
+	// 			_id: req.params.user_id
+	// 		}, function(err, user) {
+	// 			if (err) res.send(err);
+	//
+	// 			res.json({ message: 'Successfully deleted' });
+	// 		});
+	// 	});
+	//
+	// // api endpoint to get user information
+	// apiRouter.get('/me', function(req, res) {
+	// 	res.send(req.decoded);
+	// });
 
 	return apiRouter;
 };

@@ -3,7 +3,7 @@
  */
 
 angular
-  .module('myApp')
+  .module('curatorApp')
   .directive('rdWidgetHeader', rdWidgetTitle);
 
 function rdWidgetTitle() {

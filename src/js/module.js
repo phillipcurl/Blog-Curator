@@ -1,1 +1,1 @@
-angular.module('myApp', ['ui.bootstrap', 'ui.router', 'ngCookies', 'ngAnimate']);
+angular.module('curatorApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngCookies', 'ngAnimate']);

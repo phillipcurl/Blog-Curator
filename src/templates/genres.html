@@ -9,14 +9,9 @@
 </header>
 
 <div class="row">
-  <div class="col-md-6" ng-repeat="genre in genres">
+  <div class="col-md-6" ng-repeat="genre in genres.genres">
     <rd-widget>
-      <rd-widget-header icon="fa-users" title='{{genre.title}}'>
-        <a class="btn btn-default" href="{{genre.url}}">
-          <i class="fa fa-arrow-right"></i>
-        </a>
-      </rd-widget-header>
-      <rd-widget-body classes="large">
+      <rd-widget-body classes="medium no-padding">
         <label>Featured Blogs:</label>
         <p>{{genre.content}}</p>
       </rd-widget-body>

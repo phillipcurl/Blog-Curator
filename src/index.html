@@ -1,16 +1,19 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="curatorApp">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Phillip Curl</title>
+  <title>Curator</title>
+
+  <!-- FOR ANGULAR ROUTING -->
+	<base href="/">
+
   <!-- STYLES -->
   <!-- build:css lib/css/main.min.css -->
   <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
-  <!-- <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css"> -->
   <!-- endbuild -->
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,400' rel='stylesheet' type='text/css'>
@@ -20,6 +23,8 @@
   <script type="text/javascript" src="components/angular/angular.min.js"></script>
   <script type="text/javascript" src="components/angular-animate/angular-animate.min.js"></script>
   <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="components/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="components/angular-resource/angular-resource.min.js"></script>
   <script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
   <script type="text/javascript" src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <!-- endbuild -->
@@ -27,24 +32,24 @@
   <script type="text/javascript" src="js/dashboard.min.js"></script>
 </head>
 
-<body ng-controller="MasterCtrl">
-  <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+<body ng-controller="MasterCtrl as master">
+  <div id="page-wrapper" ng-class="{'open': master.toggle}" ng-cloak>
 
     <!-- Sidebar -->
-    <div id="sidebar-wrapper" class="class {{currSidebarClass}}">
+    <div id="sidebar-wrapper" class="class {{master.currSidebarClass}}">
 
       <ul class="sidebar">
         <li class="sidebar-main">
-          <a ng-click="toggleSidebar()" title="Toggle Navigation">
+          <a ng-click="master.toggleSidebar()" title="Toggle Navigation">
             Phillip Curl
-            <i class="pull-right menu-icon glyphicon" ng-class="{'glyphicon-chevron-left': toggle, 'glyphicon-chevron-right': !toggle}"></i>
+            <i class="pull-right menu-icon glyphicon" ng-class="{'glyphicon-chevron-left': master.toggle, 'glyphicon-chevron-right': !master.toggle}"></i>
           </a>
         </li>
         <li class="sidebar-title">
           <span>NAVIGATION</span>
         </li>
-        <li ng-repeat="menuItem in menuItems" class="sidebar-list">
-          <a ng-click="menuClick($index)" href="{{menuItem.url}}">
+        <li ng-repeat="menuItem in master.menuItems" class="sidebar-list">
+          <a ng-href="{{menuItem.url}}">
             {{menuItem.title}} <span class="menu-icon fa {{menuItem.icon}}"></span>
             <span class="sr-only">{{menuItem}}</span>
           </a>
@@ -85,11 +90,11 @@
                   Phillip Curl
                 </div>
                 <div class="breadcrumb-links">
-                  {{pageTitle}}
+                  {{master.pageTitle}}
                 </div>
               </div>
               <div class="pull-right item gutter visible-xs">
-                <a ng-click="toggleSidebar()" class="btn btn-default">
+                <a ng-click="master.toggleSidebar()" class="btn btn-default">
                   Menu
                 </a>
               </div>
@@ -98,13 +103,13 @@
           <!-- /.container-fluid -->
         </nav>
 
-        <div class="gutter-top alerts-container" ng-class="{'fade': !showAlerts, 'no-fade': showAlerts}" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length" style="position:absolute; z-index:900;">
+        <div class="gutter-top alerts-container" ng-class="{'fade': !master.showAlerts, 'no-fade': master.showAlerts}" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length" style="position:absolute; z-index:900;">
           <div data-ng-repeat="alert in alerts" class="col-xs-12" ng-class="{'hidden': alert.wasClosed, 'visible': !alert.wasClosed}">
             <alert type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
           </div>
         </div>
         <!-- Main Content -->
-        <div id="main-content" ui-view></div>
+        <div id="main-content" ng-view></div>
       </div>
       <!-- End Page Content -->
     </div>

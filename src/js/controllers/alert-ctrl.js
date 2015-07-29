@@ -3,7 +3,7 @@
  */
 
 angular
-  .module('myApp')
+  .module('curatorApp')
   .controller('AlertsCtrl', ['$scope', AlertsCtrl]);
 
 /**

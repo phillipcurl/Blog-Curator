@@ -1,0 +1,18 @@
+<!-- <header class="image-bg feathers-ptn">
+  <div class="col-sm-12">
+    <h1>
+      <strong>{{blog.currBlog.name}}</strong>
+    </h1>
+    <p class="lead">This is the blog sub-header</p>
+  </div>
+</header> -->
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="list-group">
+      <a ng-repeat="blog in blogs.blogsList" ng-href="/blogs/{{blog.kimonoId}}" class="list-group-item">
+        {{blog.name}}
+      </a>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@
  */
 
 angular
-  .module('myApp')
+  .module('curatorApp')
   .directive('rdLoading', rdLoading);
 
 function rdLoading() {

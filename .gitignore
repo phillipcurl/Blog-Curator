@@ -38,6 +38,9 @@ Icon
 .Spotlight-V100
 .Trashes
 
+# Config file
+config.js
+
 # Dist Directory
 /dist
 
