@@ -14,6 +14,7 @@ function Feed($http) {
 
 	// get all users
 	feedFactory.getOnDemand = function(kimonoId, onDemandVal) {
+		console.log('getting feed for: ' + kimonoId);
 		return $http.get('/api/getondemand/' + kimonoId + '/' + onDemandVal);
 	};
 

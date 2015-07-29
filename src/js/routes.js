@@ -16,6 +16,15 @@ angular.module('curatorApp').config(['$routeProvider', '$locationProvider',
       /**
        * route to view all genres
        */
+  		.when('/home', {
+  			templateUrl: 'templates/home.html',
+  			controller: 'MasterCtrl',
+  			controllerAs: 'master'
+  		})
+
+      /**
+       * route to view all genres
+       */
   		.when('/genres', {
   			templateUrl: 'templates/genres.html',
   			controller: 'GenresCtrl',
@@ -25,7 +34,7 @@ angular.module('curatorApp').config(['$routeProvider', '$locationProvider',
       /**
   		 * route to blogs for a single genre
   		 */
-  		.when('/genres/:genre_name', {
+  		.when('/genres/:genre_id', {
   			templateUrl: 'templates/genre.html',
   			controller: 'GenreCtrl',
   			controllerAs: 'genre'

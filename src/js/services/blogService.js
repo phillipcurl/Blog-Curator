@@ -12,7 +12,7 @@ function Blog($filter, Feed) {
     kimonoId: 'd3cthg28',
 		isOnDemand: false,
 		onDemandVal: '',
-    genre: 'general',
+    genre: 'hiprb',
     extUrl: 'https://www.pigeonsandplanes.com'
   }, {
 		name: 'Hypem - Most Popular',
@@ -20,7 +20,7 @@ function Blog($filter, Feed) {
     kimonoId: 'cpgc2cp6',
 		isOnDemand: true,
 		onDemandVal: 'popular',
-    genre: 'general',
+    genre: 'all',
     extUrl: 'https://www.hypem.com/popular'
   }];
 
@@ -42,7 +42,7 @@ function Blog($filter, Feed) {
 	 *
 	 */
 	blogFactory.getBlogsForGenre = function(genre) {
-		return $filter('filter')(blogFactory.blogs, function (d) {return d.genre === genre;})[0];
+		return $filter('filter')(blogFactory.blogs, function (d) {return d.genre === genre;});
 	}
 
 	/**
@@ -50,21 +50,15 @@ function Blog($filter, Feed) {
 	 */
 	blogFactory.getBlogFeed = function(id, onDemand, odVal) {
 
-		var feed = {};
+		var feed;
 
 		if (onDemand) {
-			Feed.getOnDemand(id, odVal)
-				.success(function(data) {
-					feed = data;
-				});
-			return feed;
+			feed = Feed.getOnDemand(id, odVal);
 		} else {
-			Feed.getFeed(id)
-				.success(function(data) {
-					feed = data;
-				});
-			return feed;
+			feed = Feed.getFeed(id);
 		}
+
+		return feed;
 	};
 
 	// return our entire feedFactory object

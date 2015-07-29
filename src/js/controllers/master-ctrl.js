@@ -70,7 +70,7 @@ function MasterCtrl($scope, $timeout, $cookieStore) {
   }, {
     title: 'View All',
     icon: 'fa-pencil',
-    url: 'writing',
+    url: 'blogs',
     isActive: false,
     sidebarClass: ''
   }];
