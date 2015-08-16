@@ -18,8 +18,7 @@ angular.module('curatorApp').config(['$routeProvider', '$locationProvider',
        */
   		.when('/home', {
   			templateUrl: 'templates/home.html',
-  			controller: 'MasterCtrl',
-  			controllerAs: 'master'
+  			controller: 'MasterCtrl'
   		})
 
       /**
@@ -27,8 +26,7 @@ angular.module('curatorApp').config(['$routeProvider', '$locationProvider',
        */
   		.when('/genres', {
   			templateUrl: 'templates/genres.html',
-  			controller: 'GenresCtrl',
-  			controllerAs: 'genres'
+  			controller: 'GenresCtrl'
   		})
 
       /**
@@ -36,8 +34,7 @@ angular.module('curatorApp').config(['$routeProvider', '$locationProvider',
   		 */
   		.when('/genres/:genre_id', {
   			templateUrl: 'templates/genre.html',
-  			controller: 'GenreCtrl',
-  			controllerAs: 'genre'
+  			controller: 'GenreCtrl'
   		})
 
       /**
@@ -45,8 +42,7 @@ angular.module('curatorApp').config(['$routeProvider', '$locationProvider',
   		 */
   		.when('/blogs', {
   			templateUrl: 'templates/blogs.html',
-  			controller: 'BlogsCtrl',
-  			controllerAs: 'blogs'
+  			controller: 'BlogsCtrl'
   		})
 
   		/**
@@ -54,8 +50,7 @@ angular.module('curatorApp').config(['$routeProvider', '$locationProvider',
   		 */
   		.when('/blogs/:blog_id', {
   			templateUrl: 'templates/blog.html',
-  			controller: 'BlogCtrl',
-  			controllerAs: 'blog'
+  			controller: 'BlogCtrl'
   		});
 
   	$locationProvider.html5Mode(true);

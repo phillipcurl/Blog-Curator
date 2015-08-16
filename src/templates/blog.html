@@ -1,7 +1,7 @@
 <header class="image-bg feathers-ptn">
   <div class="col-sm-12">
     <h1>
-      <strong>{{blog.currBlog.name}}</strong>
+      <strong>{{$scope.currBlog.name}}</strong>
     </h1>
     <p class="lead">This is the blog sub-header</p>
   </div>
@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="list-group">
-      <a ng-repeat="entry in blog.blogFeed" href="{{entry.title.href}}" class="list-group-item" target="_blank">
+      <a ng-repeat="entry in $scope.blogFeed" href="{{entry.title.href}}" class="list-group-item" target="_blank">
         {{entry.title.text}}
       </a>
     </div>

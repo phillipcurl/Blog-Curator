@@ -1,28 +1,10 @@
 angular.module('curatorApp')
-	.factory('Blog', ['$filter', 'Feed', Blog]);
+	.factory('Blog', ['$filter', 'Api', Blog]);
 
-function Blog($filter, Feed) {
+function Blog($filter, Api) {
 
 	// create a new object
 	var blogFactory = {};
-
-	blogFactory.blogs = [{
-    name: 'Pigeons & Planes',
-    viewUrl: 'pigeonsandplanes',
-    kimonoId: 'd3cthg28',
-		isOnDemand: false,
-		onDemandVal: '',
-    genre: 'hiprb',
-    extUrl: 'https://www.pigeonsandplanes.com'
-  }, {
-		name: 'Hypem - Most Popular',
-    viewUrl: 'pigeonsandplanes',
-    kimonoId: 'cpgc2cp6',
-		isOnDemand: true,
-		onDemandVal: 'popular',
-    genre: 'all',
-    extUrl: 'https://www.hypem.com/popular'
-  }];
 
 	/**
 	 *
@@ -35,7 +17,7 @@ function Blog($filter, Feed) {
 	 *
 	 */
 	blogFactory.getBlogs = function() {
-		return blogFactory.blogs;
+		return Api.getBlogs();
 	}
 
 	/**
@@ -50,18 +32,13 @@ function Blog($filter, Feed) {
 	 */
 	blogFactory.getBlogFeed = function(id, onDemand, odVal) {
 
-		var feed;
-
 		if (onDemand) {
-			feed = Feed.getOnDemand(id, odVal);
+			return Api.getOnDemand(id, odVal);
 		} else {
-			feed = Feed.getFeed(id);
+			return Api.getFeed(id);
 		}
-
-		return feed;
 	};
 
-	// return our entire feedFactory object
+	// return our entire apiFactory object
 	return blogFactory;
-
 }

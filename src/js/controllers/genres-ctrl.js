@@ -1,11 +1,9 @@
 angular
   .module('curatorApp')
-  .controller('GenresCtrl', ['Genre', GenresCtrl]);
+  .controller('GenresCtrl', ['$scope', 'Genre', GenresCtrl]);
 
-  function GenresCtrl(Genre){
+  function GenresCtrl($scope, Genre){
 
-    var vm = this;
-
-    vm.genresList = Genre.getGenres();
+    $scope.genresList = Genre.getGenres();
 
   }

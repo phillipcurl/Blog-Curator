@@ -1,0 +1,19 @@
+{
+  "blogs": [{
+              "name": "Pigeons & Planes",
+              "viewUrl": "pigeonsandplanes",
+              "kimonoId": "d3cthg28",
+          		"isOnDemand": false,
+          		"onDemandVal": "",
+              "genre": "hiprb",
+              "extUrl": "https://www.pigeonsandplanes.com"
+            },{
+          		"name": "Hypem - Most Popular",
+              "viewUrl": "pigeonsandplanes",
+              "kimonoId": "cpgc2cp6",
+          		"isOnDemand": true,
+          		"onDemandVal": "popular",
+              "genre": "all",
+              "extUrl": "https://www.hypem.com/popular"
+            }]
+}

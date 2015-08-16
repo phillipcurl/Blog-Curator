@@ -1,12 +1,10 @@
 angular
   .module('curatorApp')
-  .controller('BlogsCtrl', ['Blog', BlogsCtrl]);
+  .controller('BlogsCtrl', ['$scope', 'Blog', BlogsCtrl]);
 
-function BlogsCtrl(Blog){
+function BlogsCtrl($scope, Blog){
 
-  var vm = this;
-
-  vm.blogsList = Blog.getBlogs();
+  $scope.blogsList = Blog.getBlogs();
 
   // Blog.getBlog($routeParams.blog_id)
   //   .success(function(data)) {

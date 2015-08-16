@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="list-group">
-      <a ng-repeat="blog in blogs.blogsList" ng-href="/blogs/{{blog.kimonoId}}" class="list-group-item">
+      <a ng-repeat="blog in $scope.blogsList" ng-class="IsFiltered(document.Filtered)" ng-href="/blogs/{{blog.kimonoId}}" class="list-group-item">
         {{blog.name}}
       </a>
     </div>

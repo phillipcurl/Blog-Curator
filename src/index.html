@@ -32,23 +32,23 @@
   <script type="text/javascript" src="js/dashboard.min.js"></script>
 </head>
 
-<body ng-controller="MasterCtrl as master">
-  <div id="page-wrapper" ng-class="{'open': master.toggle}" ng-cloak>
+<body ng-controller="MasterCtrl">
+  <div id="page-wrapper" ng-class="{'open': $scope.toggle}" ng-cloak>
 
     <!-- Sidebar -->
-    <div id="sidebar-wrapper" class="class {{master.currSidebarClass}}">
+    <div id="sidebar-wrapper" class="class {{$scope.currSidebarClass}}">
 
       <ul class="sidebar">
         <li class="sidebar-main">
-          <a ng-click="master.toggleSidebar()" title="Toggle Navigation">
+          <a ng-click="$scope.toggleSidebar()" title="Toggle Navigation">
             Curator
-            <i class="pull-right menu-icon glyphicon" ng-class="{'glyphicon-chevron-left': master.toggle, 'glyphicon-chevron-right': !master.toggle}"></i>
+            <i class="pull-right menu-icon glyphicon" ng-class="{'glyphicon-chevron-left': $scope.toggle, 'glyphicon-chevron-right': !$scope.toggle}"></i>
           </a>
         </li>
         <li class="sidebar-title">
           <span>NAVIGATION</span>
         </li>
-        <li ng-repeat="menuItem in master.menuItems" class="sidebar-list">
+        <li ng-repeat="menuItem in $scope.menuItems" class="sidebar-list">
           <a ng-href="{{menuItem.url}}">
             {{menuItem.title}} <span class="menu-icon fa {{menuItem.icon}}"></span>
             <span class="sr-only">{{menuItem}}</span>
@@ -90,11 +90,11 @@
                   Curator
                 </div>
                 <div class="breadcrumb-links">
-                  {{master.pageTitle}}
+                  {{$scope.pageTitle}}
                 </div>
               </div>
               <div class="pull-right item gutter visible-xs">
-                <a ng-click="master.toggleSidebar()" class="btn btn-default">
+                <a ng-click="$scope.toggleSidebar()" class="btn btn-default">
                   Menu
                 </a>
               </div>
@@ -103,7 +103,7 @@
           <!-- /.container-fluid -->
         </nav>
 
-        <div class="gutter-top alerts-container" ng-class="{'fade': !master.showAlerts, 'no-fade': master.showAlerts}" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length" style="position:absolute; z-index:900;">
+        <div class="gutter-top alerts-container" ng-class="{'fade': !$scope.showAlerts, 'no-fade': $scope.showAlerts}" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length" style="position:absolute; z-index:900;">
           <div data-ng-repeat="alert in alerts" class="col-xs-12" ng-class="{'hidden': alert.wasClosed, 'visible': !alert.wasClosed}">
             <alert type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
           </div>

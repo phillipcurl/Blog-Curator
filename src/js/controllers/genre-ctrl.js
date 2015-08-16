@@ -1,15 +1,13 @@
 angular
   .module('curatorApp')
-  .controller('GenreCtrl', ['$routeParams', 'Genre', GenreCtrl]);
+  .controller('GenreCtrl', ['$scope', '$routeParams', 'Genre', GenreCtrl]);
 
-  function GenreCtrl($routeParams, Genre){
-
-    var vm = this;
+  function GenreCtrl($scope, $routeParams, Genre){
 
     var currGenreId = $routeParams.genre_id;
 
-    vm.currGenre = Genre.getGenre(currGenreId);
+    $scope.currGenre = Genre.getGenre(currGenreId);
 
-    vm.blogs = Genre.getBlogsForGenre(vm.currGenre);
+    $scope.blogs = Genre.getBlogsForGenre(currGenreId);
 
   }

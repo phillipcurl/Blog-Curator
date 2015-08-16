@@ -1,20 +1,18 @@
 angular
   .module('curatorApp')
-  .controller('BlogCtrl', ['$routeParams', 'Blog', BlogCtrl]);
+  .controller('BlogCtrl', ['$scope', '$routeParams', 'Blog', BlogCtrl]);
 
-function BlogCtrl($routeParams, Blog){
-
-  var vm = this;
+function BlogCtrl($scope, $routeParams, Blog){
 
   var currBlogId = $routeParams.blog_id;
 
-  vm.currBlog = Blog.getBlog(currBlogId);
+  $scope.currBlog = Blog.getBlog(currBlogId);
 
 
   // grab all the users at page load
 
 
-  vm.blogFeed = Blog.getBlogFeed(vm.currBlog.kimonoId, vm.currBlog.isOnDemand, vm.currBlog.onDemandVal);
+  $scope.blogFeed = Blog.getBlogFeed(vm.currBlog.kimonoId, vm.currBlog.isOnDemand, vm.currBlog.onDemandVal);
 
   // Blog.getBlog($routeParams.blog_id)
   //   .success(function(data)) {

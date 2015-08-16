@@ -13,8 +13,6 @@ angular.module('curatorApp')
  */
 function MasterCtrl($scope, $timeout, $cookieStore) {
 
-  var vm = this;
-
   /**
    * This sets the width that the sidebar is automatically toggled unless the
    * user has manually toggled it themselves
@@ -27,29 +25,29 @@ function MasterCtrl($scope, $timeout, $cookieStore) {
    * @return {[type]}                                                  [description]
    */
   if (angular.isDefined($cookieStore.get('showAlerts'))) {
-    vm.showAlerts = !$cookieStore.get('showAlerts') ? false : true;
+    $scope.showAlerts = !$cookieStore.get('showAlerts') ? false : true;
   } else {
-    vm.showAlerts = true;
+    $scope.showAlerts = true;
   }
 
   /**
    * [pageTitle description]
    * @type {String}
    */
-  vm.pageTitle = 'Home';
+  $scope.pageTitle = 'Home';
 
   /**
    * [currSidebarClass description]
    * @type {String}
    */
-  vm.currSidebarClass = 'class';
+  $scope.currSidebarClass = 'class';
 
   /**
    * The collection of menuItems used in the sidenav
    * @param title {string}
    * @type {Array of menuItems}
    */
-  vm.menuItems = [{
+  $scope.menuItems = [{
     title: 'Home',
     icon: 'fa-home',
     url: 'home',
@@ -81,23 +79,23 @@ function MasterCtrl($scope, $timeout, $cookieStore) {
    * @return {num}           the timeout value for the alert fade. 5s
    */
   $timeout(function() {
-    vm.showAlerts = false;
-    $cookieStore.put('showAlerts', vm.showAlerts);
+    $scope.showAlerts = false;
+    $cookieStore.put('showAlerts', $scope.showAlerts);
   }, 5000);
 
-  vm.getWidth = function() {
+  $scope.getWidth = function() {
     return window.innerWidth;
   };
 
-  $scope.$watch(vm.getWidth, function(newValue, oldValue) {
+  $scope.$watch($scope.getWidth, function(newValue, oldValue) {
     if (newValue >= mobileView) {
       if (angular.isDefined($cookieStore.get('toggle'))) {
-        vm.toggle = !$cookieStore.get('toggle') ? false : true;
+        $scope.toggle = !$cookieStore.get('toggle') ? false : true;
       } else {
-        vm.toggle = true;
+        $scope.toggle = true;
       }
     } else {
-      vm.toggle = false;
+      $scope.toggle = false;
     }
 
   });
@@ -105,9 +103,9 @@ function MasterCtrl($scope, $timeout, $cookieStore) {
   /**
    * Toggle the sidebar and save the toggle value in a cookie
    */
-  vm.toggleSidebar = function() {
-    vm.toggle = !vm.toggle;
-    $cookieStore.put('toggle', vm.toggle);
+  $scope.toggleSidebar = function() {
+    $scope.toggle = !$scope.toggle;
+    $cookieStore.put('toggle', $scope.toggle);
   };
 
   /**
@@ -117,11 +115,11 @@ function MasterCtrl($scope, $timeout, $cookieStore) {
    * Change the global title value to the value of the current menuItem's title
    * @param  {$index} the index of the menuItem that was clicked
    */
-  vm.menuClick = function(index) {
-    var currItem = vm.menuItems[index];
-    vm.currSidebarClass = currItem.sidebarClass;
+  $scope.menuClick = function(index) {
+    var currItem = $scope.menuItems[index];
+    $scope.currSidebarClass = currItem.sidebarClass;
     currItem.isActive = true;
-    vm.pageTitle = currItem.title;
+    $scope.pageTitle = currItem.title;
   };
 
   /**
